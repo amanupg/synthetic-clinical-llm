@@ -31,3 +31,34 @@ cd synthetic-clinical-llm
 # Install dependencies
 pip install -r requirements.txt
 ```
+
+## Usage
+
+### 1. Data Generation
+To generate the synthetic dataset using OpenAI's API:
+
+```bash
+python generate_data.py --num_samples 50 --output_file train.jsonl
+```
+
+### 2. Fine-Tuning
+To run the LoRA fine-tuning pipeline:
+
+```bash
+python train.py --base_model "TinyLlama/TinyLlama-1.1B-Chat-v1.0" --data_path "train.jsonl"
+```
+
+### 3. Inference
+To test the model's output:
+
+```bash
+python inference.py --adapter_path "./results/my_mci_adapter" --prompt "Describe the cookie jar."
+```
+
+### Requirements
+Python 3.8+
+PyTorch 2.0+
+Transformers
+PEFT
+TRL
+OpenAI API Key (for data generation module only)
